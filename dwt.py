@@ -2,12 +2,12 @@ from PIL import Image
 import pywt
 import numpy
 
-# load an image file
+# Loads an image file (e.g. : .png)
 def loadImg(path):
     return Image.open(path)
 
-#Take an image in the RGB space
-#Returns a YCbCr image
+# Take an image in the RGB space
+# Returns a YCbCr image
 def RGBtoYUV(img):
     yuv_img = img.convert('RGB')
     width, height = img.size
@@ -20,14 +20,14 @@ def RGBtoYUV(img):
 	    Y = 255 if (Y >= 255) else Y
 	    Y = 0 if (Y <= 0) else Y
 	    CB = 255 if (CB >= 255) else CB
-	    CB = 0 if (CB <= 0) else CB	
+	    CB = 0 if (CB <= 0) else CB
 	    CR = 255 if (CR >= 255) else CR
 	    CR = 0 if (CR <= 0) else CR
 	    yuv_img.putpixel((x,y) , (int(Y),int(CB),int(CR)))
     return  yuv_img
 
-#Take an image in the YCbCr space
-#Returns a RGB image
+# Take an image in the YCbCr space
+# Returns a RGB image
 def YUVtoRGB(img):
     width,height = img.size
     rgb_img = img.copy()
@@ -40,7 +40,7 @@ def YUVtoRGB(img):
 	    R = 255 if (R >= 255) else R
 	    R = 0 if (R <= 0) else R
 	    G = 255 if (G >= 255) else G
-	    G = 0 if (G <= 0) else G	
+	    G = 0 if (G <= 0) else G
 	    B = 255 if (B >= 255) else B
 	    B = 0 if (B <= 0) else B
 	    rgb_img.putpixel((x,y) , (int(R),int(G),int(B)))
@@ -49,8 +49,8 @@ def YUVtoRGB(img):
 #Convert the image to a greyscale space
 def RGBtoGray(image):
     width, height = image.size
-    img = image.copy() 
-    pixel = img.load() 
+    img = image.copy()
+    pixel = img.load()
     for i in range(width):
         for j in range(height):
             (r, g, b) = pixel[i,j]
@@ -62,14 +62,13 @@ def pixelsRed(image):
     width, height = image.size
     img = image.copy()
     pixel = img.load()
-    matriz = numpy.empty((width, height))
+    matrix = numpy.empty((width, height))
     for i in range(width):
         for j in range(height):
             (r,g,b) = image.getpixel((i,j))
             #We are only processing red here
-            matriz[i,j] = r
-
-    coeffs = pywt.dwt2(matriz, 'haar')
+            matrix[i,j] = r
+    coeffs = pywt.dwt2(matrix, 'haar')
     cA,(cH,cV,cD) = coeffs
     return coeffs
 
@@ -77,14 +76,13 @@ def pixelsGreen(image):
     width, height = image.size
     img = image.copy()
     pixel = img.load()
-    matriz = numpy.empty((width, height))
+    matrix = numpy.empty((width, height))
     for i in range(width):
         for j in range(height):
             (r,g,b) = image.getpixel((i,j))
             #We are only processing green here
-            matriz[i,j] = g
-
-    coeffs = pywt.dwt2(matriz, 'haar')
+            matrix[i,j] = g
+    coeffs = pywt.dwt2(matrix, 'haar')
     cA,(cH,cV,cD) = coeffs
     return coeffs
 
@@ -92,16 +90,14 @@ def pixelsBlue(image):
     width, height = image.size
     img = image.copy()
     pixel = img.load()
-    matriz = numpy.empty((width, height))
+    matrix = numpy.empty((width, height))
     for i in range(width):
         for j in range(height):
             (r,g,b) = image.getpixel((i,j))
             #We are only processing blue here
-            matriz[i,j] = b
-    coeffs = pywt.dwt2(matriz, 'haar')
+            matrix[i,j] = b
+    coeffs = pywt.dwt2(matrix, 'haar')
     cA,(cH,cV,cD) = coeffs
-    #print cA.size
-
     return coeffs
 
 def idwt(coR,coG,coB,img):
@@ -150,9 +146,9 @@ def imageDWT(cRed,cGreen,cBlue):
     cABlue = numpy.array(cBlue[0])
     cHBlue = numpy.array(cBlue[1][0])
     cVBlue = numpy.array(cBlue[1][1])
-    cDBlue = numpy.array(cBlue[1][2])    
-    
-    #We computing there the maxValue per channel par matrix
+    cDBlue = numpy.array(cBlue[1][2])
+
+    # We're computing there the maxValue per channel par matrix
     cAMaxRed   = maxVal(cARed)
     cAMaxGreen = maxVal(cAGreen)
     cAMaxBlue  = maxVal(cABlue)
@@ -160,7 +156,7 @@ def imageDWT(cRed,cGreen,cBlue):
     cHMaxRed   = maxVal(cHRed)
     cHMaxGreen = maxVal(cHGreen)
     cHMaxBlue  = maxVal(cHBlue)
-    
+
     cVMaxRed   = maxVal(cVRed)
     cVMaxGreen = maxVal(cVGreen)
     cVMaxBlue  = maxVal(cVBlue)
@@ -168,8 +164,8 @@ def imageDWT(cRed,cGreen,cBlue):
     cDMaxRed   = maxVal(cDRed)
     cDMaxGreen = maxVal(cDGreen)
     cDMaxBlue  = maxVal(cDBlue)
-    
-    dwt_img = Image.new("RGB",(width*2,height*2),(0,0,20))   
+
+    dwt_img = Image.new("RGB",(width*2,height*2),(0,0,20))
     #cA reconstruction
     for i in range(width):
         for j in range(height):
@@ -179,7 +175,7 @@ def imageDWT(cRed,cGreen,cBlue):
             G = (G/cAMaxGreen)*85.0
             B = cABlue[i][j]
             B = (B/cAMaxBlue)*100.0
-            dwt_img.putpixel((i,j) , (int(R),int(G),int(B)) )    
+            dwt_img.putpixel((i,j) , (int(R),int(G),int(B)) )
     #cH reconstruction
     for i in range(width):
         for j in range(height):
@@ -212,32 +208,21 @@ def imageDWT(cRed,cGreen,cBlue):
             dwt_img.putpixel((i+width,j+height) , (int(R),int(G),int(B)) )
     return dwt_img
 
-''' Methode qui n'a pas l'air de fonctionner '''
-def compareTwoImages(img0,img1):
-    img0 = img0.convert('RGB')
-    width, height = img0.size
-    img1 = img1.convert('RGB')
-    width1, height1 = img1.size
-    nbDiff = 0
-    for x in range(width):
-        for y in range(height):
-            r,g,b = img0.getpixel((x,y))
-            r1,g1,b1 = img1.getpixel((x,y))
-            nbDiff = nbDiff + 1 if (r != r1 or g != g1 or b != b1) else nbDiff
-    return nbDiff
-
-'''Main method that allows to compress an image by using DWT'''
+'''Main method'''
 def main(path):
     img0 = loadImg(path)
     img = loadImg(path)
-    #img.save("DATA/1.jpg")
+    img.save("DATA/1.jpg")
     width,height = img.size
     yuvImg = RGBtoYUV(img)
     yuvImg.save("DATA/2.jpg")
     #Gets the coefficients from each channel
-    coR = pixelsRed(yuvImg)#There we're getting the coefficient of the red channel
-    coG = pixelsGreen(yuvImg)#There we're getting the coefficient of the green channel
-    coB = pixelsBlue(yuvImg)#There we're getting the coefficient of the blue channel
+    # There we're getting the coefficient of the red channel
+    coR = pixelsRed(yuvImg)
+    # There we're getting the coefficient of the green channel
+    coG = pixelsGreen(yuvImg)
+    # There we're getting the coefficient of the blue channel
+    coB = pixelsBlue(yuvImg)
     dwt = imageDWT(coR,coG,coB)
     dwt.save("DATA/3.jpg")
     #quantification()
