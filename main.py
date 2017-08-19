@@ -1,10 +1,11 @@
-import dwt
-import windows
+#import dwt
+#import windows
 
 def main():
     pathImg = "DATA/"
     filename = "simon.png"
     pathImg = pathImg+filename
+    print pathImg
     #dwt.main(pathImg)
     #windows.main(pathImg)
 

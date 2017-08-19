@@ -1,4 +1,3 @@
 start:
-	virtualenv .ve && \
-	sudo pip -e install -r requirements.txt && \
+	sudo pip install -r requirements.txt && \
         python main.py

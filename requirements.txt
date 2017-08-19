@@ -1,2 +1,3 @@
-Pillow==4.2.1
-PyWavelets>=0.2.2
+Pillow
+PyWavelets
+numpy
