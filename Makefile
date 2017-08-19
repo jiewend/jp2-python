@@ -1,3 +1,6 @@
-start:
+all:
 	sudo pip install -r requirements.txt && \
-        python main.py
+  python main.py
+
+start:
+	python main.py

@@ -209,28 +209,29 @@ def imageDWT(cRed,cGreen,cBlue):
     return dwt_img
 
 '''Main method'''
-def main(path):
-    img0 = loadImg(path)
-    img = loadImg(path)
-    img.save("DATA/1.jpg")
-    width,height = img.size
-    yuvImg = RGBtoYUV(img)
-    yuvImg.save("DATA/2.jpg")
-    #Gets the coefficients from each channel
-    # There we're getting the coefficient of the red channel
-    coR = pixelsRed(yuvImg)
-    # There we're getting the coefficient of the green channel
-    coG = pixelsGreen(yuvImg)
-    # There we're getting the coefficient of the blue channel
-    coB = pixelsBlue(yuvImg)
-    dwt = imageDWT(coR,coG,coB)
-    dwt.save("DATA/3.jpg")
-    #quantification()
-    idwt(coR,coG,coB, img)
-    img.save("DATA/4.jpg")
-    img = YUVtoRGB(img)
-    img.save("DATA/5.jpg")
+def run(path=None):
+    print 'Hello'
+    # img0 = loadImg(path)
+    # img = loadImg(path)
+    # img.save("DATA/1.jpg")
+    # width,height = img.size
+    # yuvImg = RGBtoYUV(img)
+    # yuvImg.save("DATA/2.jpg")
+    # #Gets the coefficients from each channel
+    # # There we're getting the coefficient of the red channel
+    # coR = pixelsRed(yuvImg)
+    # # There we're getting the coefficient of the green channel
+    # coG = pixelsGreen(yuvImg)
+    # # There we're getting the coefficient of the blue channel
+    # coB = pixelsBlue(yuvImg)
+    # dwt = imageDWT(coR,coG,coB)
+    # dwt.save("DATA/3.jpg")
+    # #quantification()
+    # idwt(coR,coG,coB, img)
+    # img.save("DATA/4.jpg")
+    # img = YUVtoRGB(img)
+    # img.save("DATA/5.jpg")
 
 
 if __name__ == '__main__':
-    main()
+    run()
