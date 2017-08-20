@@ -1,5 +1,5 @@
 import src.dwt as dwt
-#import windows
+#import src.windows as win
 
 def run():
     pathImg = "DATA/"
@@ -7,7 +7,7 @@ def run():
     pathImg = pathImg+filename
     print pathImg
     dwt.run()
-    #windows.main(pathImg)
+    #windows.run()
 
 if __name__ == '__main__':
     run()
