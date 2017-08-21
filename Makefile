@@ -4,3 +4,6 @@ all:
 
 start:
 	python main.py
+
+test:
+	python -m tests.runner
