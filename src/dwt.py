@@ -1,6 +1,7 @@
 from PIL import Image
 import pywt
 import numpy
+import os
 
 # Loads an image file (e.g. : .png)
 def loadImg(path):
@@ -105,15 +106,16 @@ def idwt(coR,coG,coB,img):
     iG = pywt.idwt2(coG,'haar')
     iB = pywt.idwt2(coB,'haar')
     pixel = img.load()
-    width,height= img.size
+    width,height = img.size
+    idwt_img = Image.new("RGB",(width,height),(0,0,20))
     for i in range(width):
         for j in range(height):
             rComp = int(iR[i,j])
             gComp = int(iG[i,j])
             bComp = int(iB[i,j])
-            pixel[i,j]= (rComp,gComp,bComp)
-        #print pixel[i,j]
-    return pixel
+            # pixel[i,j]= (rComp,gComp,bComp)
+            idwt_img.putpixel((i,j) , (int(rComp),int(gComp),int(bComp)) )
+    return idwt_img
 
 
 ''' Returns the maxValue of an array '''
@@ -210,27 +212,37 @@ def imageDWT(cRed,cGreen,cBlue):
 
 '''Main method'''
 def run(path=None):
-    print 'Hello'
-    # img0 = loadImg(path)
-    # img = loadImg(path)
-    # img.save("DATA/1.jpg")
+    img = loadImg(path)
     # width,height = img.size
-    # yuvImg = RGBtoYUV(img)
-    # yuvImg.save("DATA/2.jpg")
-    # #Gets the coefficients from each channel
-    # # There we're getting the coefficient of the red channel
-    # coR = pixelsRed(yuvImg)
-    # # There we're getting the coefficient of the green channel
-    # coG = pixelsGreen(yuvImg)
-    # # There we're getting the coefficient of the blue channel
-    # coB = pixelsBlue(yuvImg)
-    # dwt = imageDWT(coR,coG,coB)
-    # dwt.save("DATA/3.jpg")
-    # #quantification()
-    # idwt(coR,coG,coB, img)
-    # img.save("DATA/4.jpg")
-    # img = YUVtoRGB(img)
-    # img.save("DATA/5.jpg")
+    outputDir = 'output'
+
+    if not os.path.exists(outputDir):
+        os.makedirs(outputDir)
+
+    yuvImg = RGBtoYUV(img)
+    yuvImg.save(outputDir + '/2.jpg')
+
+    # Gets the coefficients from each channel
+    # There we're getting the coefficient of the red channel
+    coR = pixelsRed(yuvImg)
+    # There we're getting the coefficient of the green channel
+    coG = pixelsGreen(yuvImg)
+    # There we're getting the coefficient of the blue channel
+    coB = pixelsBlue(yuvImg)
+
+    # Computing Discrete Wavelets Transform
+    dwtImg = imageDWT(coR,coG,coB)
+    dwtImg.save(outputDir + '/3.jpg')
+    # print dwtImg
+
+    # Quantification step
+    idwtImg = idwt(coR,coG,coB, img)
+    # print idwtImg
+    idwtImg.save(outputDir + '/4.jpg')
+
+    # Transforms YUV to RGB
+    final = YUVtoRGB(idwtImg)
+    final.save(outputDir + '/5.jpg')
 
 
 if __name__ == '__main__':

@@ -26,3 +26,5 @@ setenv.sh
 shell.sh
 
 .ve/
+
+output/
