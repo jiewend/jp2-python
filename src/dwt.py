@@ -235,7 +235,7 @@ def run(path=None):
     dwtImg.save(outputDir + '/3.jpg')
     # print dwtImg
 
-    # Quantification step
+    # Reversing Discrete Wavelets Transform
     idwtImg = idwt(coR,coG,coB, img)
     # print idwtImg
     idwtImg.save(outputDir + '/4.jpg')
