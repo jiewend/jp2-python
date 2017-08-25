@@ -3,7 +3,7 @@ all:
   python main.py
 
 start:
-	python main.py
-
+	python app.py
+	
 test:
 	python -m tests.runner
