@@ -113,8 +113,7 @@ def idwt(coR,coG,coB,img):
             rComp = int(iR[i,j])
             gComp = int(iG[i,j])
             bComp = int(iB[i,j])
-            # pixel[i,j]= (rComp,gComp,bComp)
-            idwt_img.putpixel((i,j) , (int(rComp),int(gComp),int(bComp)) )
+            idwt_img.putpixel((i,j), (rComp, gComp, bComp))
     return idwt_img
 
 
