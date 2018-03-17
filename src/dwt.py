@@ -14,7 +14,7 @@ def RGBtoYUV(img):
     width, height = img.size
     for x in range(width):
         for y in range(height):
-            r,g,b = yuv_img.getpixel((x,y))
+            r, g, b = yuv_img.getpixel((x,y))
 	    Y = 0.299 * r + 0.587 * g + 0.114  * b
 	    CB = - 0.168935 * r + - 0.331665 * g + 0.50059 * b + 128
 	    CR = 0.499813 * r - 0.4187 * g + - 0.081282 * b + 128
