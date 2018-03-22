@@ -7,7 +7,7 @@ import os
 def loadImg(path):
     return Image.open(path)
 
-# Take an image in the RGB space
+# Takes an image in the RGB space
 # Returns a YCbCr image
 def RGBtoYUV(img):
     yuv_img = img.convert('RGB')

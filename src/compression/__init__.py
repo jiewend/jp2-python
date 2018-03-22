@@ -1,7 +1,7 @@
 import os
 
-def conversion_RGBtoYUV():
-    return
+def RGB_to_YUV():
+    return 42
 
-def conversion_YUVtoRGB():
-    return
+def YUV_to_RGB():
+    return 42
