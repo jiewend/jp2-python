@@ -16,7 +16,7 @@ def RGB_to_YUV(img):
         CB = 0 if (CB <= 0) else CB
         CR = 255 if (CR >= 255) else CR
         CR = 0 if (CR <= 0) else CR
-        yuv_img.putpixel((x, y) , (int(Y),int(CB),int(CR)))
+        yuv_img.putpixel((x, y), (int(Y), int(CB), int(CR)))
     return  yuv_img
 
 def YUV_to_RGB():
