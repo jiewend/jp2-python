@@ -12,4 +12,4 @@ class UtilTest(unittest.TestCase):
         self.assertEqual(type(img).__name__, 'PngImageFile')
         # case 2 (it should raise an exception):
         img = loadImg(os.path.join('data', 'dummy_file.png'))
-        self.assertEqual(type(img).__name__, 'FileNotFoundError')
+        self.assertEqual(type(img).__name__, 'NoneType')
