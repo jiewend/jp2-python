@@ -10,8 +10,6 @@ def run():
     filename = 'lena.png'
     img = util.loadImg(os.path.join(folder, filename))
 
-    print (img.getpixel(0))
-
     if img != None:
         img_yuv = dwt.RGB_to_YUV(img)
 

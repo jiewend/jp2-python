@@ -1,7 +1,8 @@
-import os
+# pylint: disable=C0103
+'-'
 
-'Converts Image Matrix from RGB to YUV'
-def RGB_to_YUV(img):
+def rgb_to_yuv(img):
+    '-'
     yuv_img = img.convert('RGB')
     width, height = img.size
     for x in range(width):
@@ -19,5 +20,6 @@ def RGB_to_YUV(img):
         yuv_img.putpixel((x, y), (int(Y), int(CB), int(CR)))
     return yuv_img
 
-def YUV_to_RGB():
+def yuv_to_rgb():
+    '-'
     return 42

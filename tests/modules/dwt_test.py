@@ -1,6 +1,15 @@
+'-'
 import unittest
-from src.compression import RGB_to_YUV, YUV_to_RGB
+import os
+from src.utils import loadImg
+from src.compression import rgb_to_yuv
 
 class CompressionTest(unittest.TestCase):
-    def test_RGB_to_YUV(self):
-        self.assertTrue(1)
+    'it should return an Image Type after conversion'
+    def test_rgb_to_yuv(self):
+        '-'
+        folder = 'data'
+        filename = 'lena.png'
+        img = loadImg(os.path.join(folder, filename))
+        img_yuv = rgb_to_yuv(img)
+        self.assertEqual(type(img_yuv).__name__, 'Image')
