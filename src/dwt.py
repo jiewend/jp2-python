@@ -1,63 +1,63 @@
-from PIL import Image
-import pywt
-import numpy
-import os
+# from PIL import Image
+# import pywt
+# import numpy
+# import os
 
 # Loads an image file (e.g. : .png)
-def loadImg(path):
-    return Image.open(path)
+# def loadImg(path):
+#     return Image.open(path)
 
 # Takes an image in the RGB space
 # Returns a YCbCr image
-def RGBtoYUV(img):
-    yuv_img = img.convert('RGB')
-    width, height = img.size
-    for x in range(width):
-        for y in range(height):
-            (r, g, b) = yuv_img.getpixel((x, y))
-        Y = 0.299 * r + 0.587 * g + 0.114 * b
-        CB = - 0.168935 * r + - 0.331665 * g + 0.50059 * b + 128
-        CR = 0.499813 * r - 0.4187 * g + - 0.081282 * b + 128
-        Y = 255 if (Y >= 255) else Y
-        Y = 0 if (Y <= 0) else Y
-        CB = 255 if (CB >= 255) else CB
-        CB = 0 if (CB <= 0) else CB
-        CR = 255 if (CR >= 255) else CR
-        CR = 0 if (CR <= 0) else CR
-        yuv_img.putpixel((x, y) , (int(Y),int(CB),int(CR)))
-    return  yuv_img
+# def RGBtoYUV(img):
+#     yuv_img = img.convert('RGB')
+#     width, height = img.size
+#     for x in range(width):
+#         for y in range(height):
+#             (r, g, b) = yuv_img.getpixel((x, y))
+#         Y = 0.299 * r + 0.587 * g + 0.114 * b
+#         CB = - 0.168935 * r + - 0.331665 * g + 0.50059 * b + 128
+#         CR = 0.499813 * r - 0.4187 * g + - 0.081282 * b + 128
+#         Y = 255 if (Y >= 255) else Y
+#         Y = 0 if (Y <= 0) else Y
+#         CB = 255 if (CB >= 255) else CB
+#         CB = 0 if (CB <= 0) else CB
+#         CR = 255 if (CR >= 255) else CR
+#         CR = 0 if (CR <= 0) else CR
+#         yuv_img.putpixel((x, y) , (int(Y),int(CB),int(CR)))
+#     return  yuv_img
 
 # Take an image in the YCbCr space
 # Returns a RGB image
-def YUVtoRGB(img):
-    width,height = img.size
-    rgb_img = img.copy()
-    for x in range(width):
-        for y in range(height):
-            (Y, CB, CR) = img.getpixel((x,y))
-        R = Y + 1.402 * ( CR - 128 )
-        G = Y - 0.34414 * (CB - 128 ) - 0.71414 * (CR - 128 )
-        B = Y + 1.772 * (CB -128 )
-        R = 255 if (R >= 255) else R
-        R = 0 if (R <= 0) else R
-        G = 255 if (G >= 255) else G
-        G = 0 if (G <= 0) else G
-        B = 255 if (B >= 255) else B
-        B = 0 if (B <= 0) else B
-        rgb_img.putpixel((x,y) , (int(R),int(G),int(B)))
-    return  rgb_img
+# def YUVtoRGB(img):
+#     width,height = img.size
+#     rgb_img = img.copy()
+#     for x in range(width):
+#         for y in range(height):
+#             (Y, CB, CR) = img.getpixel((x,y))
+#         R = Y + 1.402 * ( CR - 128 )
+#         G = Y - 0.34414 * (CB - 128 ) - 0.71414 * (CR - 128 )
+#         B = Y + 1.772 * (CB -128 )
+#         R = 255 if (R >= 255) else R
+#         R = 0 if (R <= 0) else R
+#         G = 255 if (G >= 255) else G
+#         G = 0 if (G <= 0) else G
+#         B = 255 if (B >= 255) else B
+#         B = 0 if (B <= 0) else B
+#         rgb_img.putpixel((x,y) , (int(R),int(G),int(B)))
+#     return  rgb_img
 
 #Convert the image to a greyscale space
-def RGBtoGray(image):
-    width, height = image.size
-    img = image.copy()
-    pixel = img.load()
-    for i in range(width):
-        for j in range(height):
-            (r, g, b) = pixel[i,j]
-            gs = int((r + g + b) / 3)
-            pixel [i, j] = (gs, gs, gs)
-    return img
+# def RGBtoGray(image):
+#     width, height = image.size
+#     img = image.copy()
+#     pixel = img.load()
+#     for i in range(width):
+#         for j in range(height):
+#             (r, g, b) = pixel[i,j]
+#             gs = int((r + g + b) / 3)
+#             pixel [i, j] = (gs, gs, gs)
+#     return img
 
 # def pixelsRed(image):
 #     width, height = image.size
@@ -117,7 +117,7 @@ def RGBtoGray(image):
 #     return idwt_img
 
 
-''' Returns the maxValue of an array '''
+# ''' Returns the maxValue of an array '''
 # def maxVal(tab):
 #     width, height = tab.shape
 #     max = 0;
@@ -212,7 +212,7 @@ def RGBtoGray(image):
 '''Main method'''
 def run(path=None):
     img = loadImg(path)
-    (width, height) = img.size
+    # (width, height) = img.size
     # outputDir = 'output'
     #
     # if not os.path.exists(outputDir):

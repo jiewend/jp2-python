@@ -9,9 +9,8 @@ def run():
     folder = 'data'
     filename = 'lena.png'
     img = util.loadImg(os.path.join(folder, filename))
-
-    if img != None:
-        img_yuv = dwt.RGB_to_YUV(img)
+    (c_r, c_g, c_b) = dwt.extract_rgb_coeff(img)
+    print (len(c_r[0]))
 
 if __name__ == '__main__':
     run()
