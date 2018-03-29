@@ -117,7 +117,7 @@
 #     return idwt_img
 
 
-# ''' Returns the maxValue of an array '''
+# ''' Returns the maxValue of an bi-dimensional matrix'''
 # def maxVal(tab):
 #     width, height = tab.shape
 #     max = 0;
