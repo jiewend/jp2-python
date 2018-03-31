@@ -1,4 +1,4 @@
-# pylint: disable=C0103
+# pylint: disable=C0103, E0401
 '-'
 import pywt
 import numpy
