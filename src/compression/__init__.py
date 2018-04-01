@@ -1,5 +1,5 @@
-# pylint: disable=C0103, E0401
-'-'
+# pylint: disable=C0103,E0401,W0631
+'compression methods'
 import pywt
 import numpy
 
@@ -42,6 +42,7 @@ def yuv_to_rgb(img):
     return  rgb_img
 
 def rgb_to_grayscale(img):
+    'Converts an Image to Greyscale'
     width, height = img.size
     res = img.copy()
     for i in range(width):
@@ -52,6 +53,7 @@ def rgb_to_grayscale(img):
     return res
 
 def extract_rgb_coeff(img):
+    'Extracts RGB coefficients of a given Image'
     (width, height) = img.size
     img = img.copy()
 
@@ -66,8 +68,10 @@ def extract_rgb_coeff(img):
             mat_g[i, j] = g
             mat_b[i, j] = b
 
+    # coeffs_r: cA,(cH,cV,cD)
     coeffs_r = pywt.dwt2(mat_r, 'haar')
+    # coeffs_g: cA,(cH,cV,cD)
     coeffs_g = pywt.dwt2(mat_g, 'haar')
+    # coeffs_b: cA,(cH,cV,cD)
     coeffs_b = pywt.dwt2(mat_b, 'haar')
-    #cA,(cH,cV,cD) = coeffs_r
     return (coeffs_r, coeffs_g, coeffs_b)
