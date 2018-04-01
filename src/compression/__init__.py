@@ -75,3 +75,7 @@ def extract_rgb_coeff(img):
     # coeffs_b: cA,(cH,cV,cD)
     coeffs_b = pywt.dwt2(mat_b, 'haar')
     return (coeffs_r, coeffs_g, coeffs_b)
+
+def img_from_dwt_coeff(coeff_dwt):
+    return None
+
