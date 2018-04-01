@@ -10,6 +10,10 @@ def load_img(path):
     ----------
     path: string
         image path to open
+    Returns
+    -------
+    Image:
+        image object
     """
     try:
         return Image.open(path)
@@ -25,6 +29,7 @@ def max_ndarray(mat):
         matrix from which we want to compute the max value
     Returns
     -------
-    int: matrix maximum value
+    int32:
+        matrix maximum value
     """
     return np.amax(mat) if type(mat).__name__ == 'ndarray' else 0
