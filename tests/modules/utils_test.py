@@ -1,7 +1,7 @@
 'Test Definition for Utility methods'
 import unittest
 import os
-from src.utils import loadImg
+from src.utils import load_img
 
 FOLDER = 'data'
 RIGHT_FILENAME = 'lena.png'
@@ -12,8 +12,8 @@ class UtilTest(unittest.TestCase):
     def test_load_png_file(self):
         'it should return an Image Type if file exists and is an Image file'
         # case 1 (it should return PngImageFile):
-        img = loadImg(os.path.join(FOLDER, RIGHT_FILENAME))
+        img = load_img(os.path.join(FOLDER, RIGHT_FILENAME))
         self.assertEqual(type(img).__name__, 'PngImageFile')
         # case 2 (it should return NoneType):
-        img = loadImg(os.path.join(FOLDER, WRONG_FILENAME))
+        img = load_img(os.path.join(FOLDER, WRONG_FILENAME))
         self.assertEqual(type(img).__name__, 'NoneType')

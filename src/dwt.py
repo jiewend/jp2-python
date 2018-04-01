@@ -209,9 +209,9 @@
 #             dwt_img.putpixel((i+width,j+height) , (int(R),int(G),int(B)) )
 #     return dwt_img
 
-'''Main method'''
-def run(path=None):
-    img = loadImg(path)
+# '''Main method'''
+# def run(path=None):
+#     img = loadImg(path)
     # (width, height) = img.size
     # outputDir = 'output'
     #
@@ -244,5 +244,5 @@ def run(path=None):
     # final.save(outputDir + '/5.jpg')
 
 
-if __name__ == '__main__':
-    run()
+# if __name__ == '__main__':
+#     run()

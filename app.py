@@ -4,13 +4,11 @@ import os
 import src.utils as util
 import src.compression as dwt
 import src.windows as win
+import numpy as np
 
 def run():
-    folder = 'data'
-    filename = 'lena.png'
-    img = util.loadImg(os.path.join(folder, filename))
-    (c_r, c_g, c_b) = dwt.extract_rgb_coeff(img)
-    print (len(c_r[0]))
+    x = np.array([[1, 2, 3], [4, 5, 6]], np.int32)
+    print (util.max_ndarray(x))
 
 if __name__ == '__main__':
     run()

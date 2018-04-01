@@ -1,7 +1,7 @@
 'Test Definition for Compression methods'
 import unittest
 import os
-from src.utils import loadImg
+from src.utils import load_img
 from src.compression import rgb_to_yuv, yuv_to_rgb, extract_rgb_coeff
 
 FOLDER = 'data'
@@ -11,19 +11,19 @@ class CompressionTest(unittest.TestCase):
     'Units test for compression methods'
     def test_rgb_to_yuv(self):
         'it should return an Image Type after conversion'
-        img = loadImg(os.path.join(FOLDER, FILENAME))
+        img = load_img(os.path.join(FOLDER, FILENAME))
         img_yuv = rgb_to_yuv(img)
         self.assertEqual(type(img_yuv).__name__, 'Image')
 
     def test_yuv_to_rgb(self):
         'it should return an Image Type after conversion'
-        img = loadImg(os.path.join(FOLDER, FILENAME))
+        img = load_img(os.path.join(FOLDER, FILENAME))
         img_yuv = yuv_to_rgb(img)
         self.assertEqual(type(img_yuv).__name__, 'Image')
 
     def test_extract_rgb_coeff(self):
         'it should return a Tuple of coefficient per each channel (RGB)'
-        img = loadImg(os.path.join(FOLDER, FILENAME))
+        img = load_img(os.path.join(FOLDER, FILENAME))
         (c_r, c_g, c_b) = extract_rgb_coeff(img)
         self.assertTrue(c_r[0] is not None)
         self.assertTrue(c_r[1] is not None)
