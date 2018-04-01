@@ -18,7 +18,7 @@ def load_img(path):
 
 def max_ndarray(mat):
     """
-    Returns maximum value within a given 2D Matrix, otherwise None
+    Returns maximum value within a given 2D Matrix, otherwise 0
     Parameters
     ----------
     mat: numpy.ndarray
