@@ -98,7 +98,7 @@ def img_from_dwt_coeff(coeff_dwt):
 
     # We're computing there the maxValue per channel par matrix
     cAMaxRed = util.max_ndarray(cARed)
-    print (cAMaxRed)
+    # print (cAMaxRed)
     # cAMaxRed   = maxVal(cARed)
     # cAMaxGreen = maxVal(cAGreen)
     # cAMaxBlue  = maxVal(cABlue)
