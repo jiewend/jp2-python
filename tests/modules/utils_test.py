@@ -18,16 +18,15 @@ class UtilTest(unittest.TestCase):
         # case 2 (it should return NoneType):
         img = load_img(os.path.join(FOLDER, WRONG_FILENAME))
         self.assertEqual(type(img).__name__, 'NoneType')
-    
+
     def test_max_ndarray(self):
         'it should return an Integer, max if matrix is valid, 0 otherwise'
         # case 1 (it should return 6):
-        x = np.array([[1, 2, 3], [4, 5, 6]], np.int32)
-        max = max_ndarray(x)
-        self.assertEqual(type(max).__name__, 'int32')
-        self.assertEqual(max, 6)
+        tmp_array = np.array([[1, 2, 3], [4, 5, 6]], np.int32)
+        max_value = max_ndarray(tmp_array)
+        self.assertEqual(type(max_value).__name__, 'int32')
+        self.assertEqual(max_value, 6)
         # case 2 (it should return 0):
         max_none = max_ndarray(None)
         self.assertEqual(type(max_none).__name__, 'int')
         self.assertEqual(max_none, 0)
-        

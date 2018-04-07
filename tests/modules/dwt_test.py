@@ -2,7 +2,12 @@
 import unittest
 import os
 from src.utils import load_img
-from src.compression import rgb_to_yuv, yuv_to_rgb, extract_rgb_coeff
+from src.compression import (
+    rgb_to_yuv, \
+    yuv_to_rgb, \
+    extract_rgb_coeff, \
+    img_from_dwt_coeff
+)
 
 FOLDER = 'data'
 FILENAME = 'lena.png'
@@ -31,3 +36,9 @@ class CompressionTest(unittest.TestCase):
         self.assertTrue(c_g[1] is not None)
         self.assertTrue(c_b[0] is not None)
         self.assertTrue(c_b[1] is not None)
+
+    def test_img_from_dwt_coeff(self):
+        'it should return '
+        img = load_img(os.path.join(FOLDER, FILENAME))
+        coeff = extract_rgb_coeff(img)
+        return

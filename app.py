@@ -6,9 +6,12 @@ import src.compression as dwt
 import src.windows as win
 import numpy as np
 
+FOLDER = 'data'
+RIGHT_FILENAME = 'lena.png'
+
 def run():
-    x = np.array([[1, 2, 3], [4, 5, 6]], np.int32)
-    print (util.max_ndarray(x))
+    img = util.load_img(os.path.join(FOLDER, RIGHT_FILENAME))
+    print (dwt.extract_rgb_coeff(img))
 
 if __name__ == '__main__':
     run()
