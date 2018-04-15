@@ -1,12 +1,3 @@
-# from PIL import Image
-# import pywt
-# import numpy
-# import os
-
-# Loads an image file (e.g. : .png)
-# def loadImg(path):
-#     return Image.open(path)
-
 # Takes an image in the RGB space
 # Returns a YCbCr image
 # def RGBtoYUV(img):
