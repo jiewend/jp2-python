@@ -233,7 +233,3 @@
     # # Transforms YUV to RGB
     # final = YUVtoRGB(idwtImg)
     # final.save(outputDir + '/5.jpg')
-
-
-# if __name__ == '__main__':
-#     run()
