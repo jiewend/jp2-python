@@ -79,6 +79,9 @@ def extract_rgb_coeff(img):
     return (coeffs_r, coeffs_g, coeffs_b)
 
 def img_from_dwt_coeff(coeff_dwt):
+    '''
+    This function will recreate an Image object, based on the generated from dwt coefficients
+    '''
     #Channel Red
     (coeffs_r, coeffs_g, coeffs_b) = coeff_dwt
     cARed = numpy.array(coeffs_r[0])
