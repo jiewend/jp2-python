@@ -6,7 +6,16 @@ from PIL import Image
 import src.utils as util
 
 def rgb_to_yuv(img):
-    '-'
+    """
+    Returns yuv image
+    Parameters
+    ----------
+    img: PIL Image
+    Returns
+    -------
+    PIL Image:
+        image converted to yuv
+    """
     yuv_img = img.convert('RGB')
     (width, height) = img.size
     for x in range(width):
