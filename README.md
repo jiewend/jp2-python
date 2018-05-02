@@ -15,6 +15,7 @@ JPEG2000/JP2 Image Compression Codec using Python,NumPy,PyDWT
 - [ ] Quantization
 - [x] Reconstruct Image from Coefficients
 - [x] Conversion YUV to RGB
+- [ ] Usage Example
 
 ## License
 
