@@ -17,6 +17,9 @@ JPEG2000/JP2 Image Compression Codec using Python,NumPy,PyDWT
 - [x] Conversion YUV to RGB
 - [ ] Usage Example
 
+## Tests
+To run the tests, use the command `make test`
+
 ## License
 
 MIT License
