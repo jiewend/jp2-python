@@ -34,6 +34,5 @@
 #     panel2.pack(side = "left", fill = "both", expand = "yes")
 #     panel3.pack(side = "left", fill = "both", expand = "yes")
 #     # panel4.pack(side = "left", fill = "both", expand = "yes")
-#
 #     #Start the GUI
 #     window.mainloop()

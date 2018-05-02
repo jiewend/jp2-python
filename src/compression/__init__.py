@@ -1,5 +1,5 @@
 # pylint: disable=C0103,E0401,W0631
-'compression methods'
+'Compression methods'
 import pywt
 import numpy
 from PIL import Image
@@ -34,7 +34,16 @@ def rgb_to_yuv(img):
     return yuv_img
 
 def yuv_to_rgb(img):
-    '-'
+    """
+    Returns rgb image
+    Parameters
+    ----------
+    img: PIL Image
+    Returns
+    -------
+    PIL Image:
+        image converted to rgb
+    """
     (width, height) = img.size
     rgb_img = img.copy()
     for x in range(width):
@@ -53,7 +62,16 @@ def yuv_to_rgb(img):
     return  rgb_img
 
 def rgb_to_grayscale(img):
-    'Converts an Image to Greyscale'
+    """
+    Returns greyscale image
+    Parameters
+    ----------
+    img: PIL Image
+    Returns
+    -------
+    PIL Image:
+        image converted to greyscale
+    """
     width, height = img.size
     res = img.copy()
     for i in range(width):
@@ -64,7 +82,16 @@ def rgb_to_grayscale(img):
     return res
 
 def extract_rgb_coeff(img):
-    'Extracts RGB coefficients of a given Image'
+    """
+    Returns RGB dwt applied coefficients tuple
+    Parameters
+    ----------
+    img: PIL Image
+    Returns
+    -------
+    (coeffs_r, coeffs_g, coeffs_b):
+        RGB coefficients with Discrete Wavelet Transform Applied
+    """
     (width, height) = img.size
     img = img.copy()
 
@@ -88,9 +115,16 @@ def extract_rgb_coeff(img):
     return (coeffs_r, coeffs_g, coeffs_b)
 
 def img_from_dwt_coeff(coeff_dwt):
-    '''
-    This function will recreate an Image object, based on the generated from dwt coefficients
-    '''
+    """
+    Returns Image recreated from dwt coefficients
+    Parameters
+    ----------
+    (coeffs_r, coeffs_g, coeffs_b):
+        RGB coefficients with Discrete Wavelet Transform Applied
+    Returns
+    -------
+    Image from dwt coefficients
+    """
     #Channel Red
     (coeffs_r, coeffs_g, coeffs_b) = coeff_dwt
     cARed = numpy.array(coeffs_r[0])
