@@ -38,7 +38,7 @@ class CompressionTest(unittest.TestCase):
         self.assertTrue(c_b[1] is not None)
 
     def test_img_from_dwt_coeff(self):
-        'it should return '
+        'TODO'
         img = load_img(os.path.join(FOLDER, FILENAME))
         coeff = extract_rgb_coeff(img)
         return
