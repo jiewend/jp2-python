@@ -209,5 +209,4 @@ def img_from_dwt_coeff(coeff_dwt):
     return dwt_img
 
 def quantization(mat):
-    #TODO
     pass
