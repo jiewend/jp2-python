@@ -3,7 +3,6 @@
 import os
 import src.utils as util
 import src.compression as dwt
-import src.windows as win
 import numpy as np
 
 FOLDER = 'data'
