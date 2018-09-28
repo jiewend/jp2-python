@@ -6,7 +6,8 @@ from src.compression import (
     rgb_to_yuv, \
     yuv_to_rgb, \
     extract_rgb_coeff, \
-    img_from_dwt_coeff
+    img_from_dwt_coeff, \
+    recontract_img_from_dwt_coef
 )
 
 FOLDER = 'data'
@@ -41,4 +42,11 @@ class CompressionTest(unittest.TestCase):
         'TODO'
         img = load_img(os.path.join(FOLDER, FILENAME))
         coeff = extract_rgb_coeff(img)
+        img_new = img_from_dwt_coeff(coeff)
+        img_new.save('/home/jiewend/download/a.jpeg')
         return
+    def test_recontract_img_from_dwt_coef(self):
+        img = load_img(os.path.join(FOLDER, FILENAME))
+        coeff = extract_rgb_coeff(img)
+        img_new = recontract_img_from_dwt_coef(coeff)
+

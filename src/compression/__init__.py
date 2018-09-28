@@ -125,10 +125,11 @@ def img_from_dwt_coeff(coeff_dwt):
     -------
     Image from dwt coefficients
     """
-    #Channel Red
     (coeffs_r, coeffs_g, coeffs_b) = coeff_dwt
+    (width, height) = coeffs_r[0].shape
+
+    #Channel Red
     cARed = numpy.array(coeffs_r[0])
-    (width, height) = coeffs_r.shape
     cHRed = numpy.array(coeffs_r[1][0])
     cVRed = numpy.array(coeffs_r[1][1])
     cDRed = numpy.array(coeffs_r[1][2])
@@ -207,6 +208,33 @@ def img_from_dwt_coeff(coeff_dwt):
             new_value = (int(R), int(G), int(B))
             dwt_img.putpixel((i+width, j+height), new_value)
     return dwt_img
+
+def recontract_img_from_dwt_coef(coeff_dwt):
+    (coeffs_r, coeffs_g, coeffs_b) = coeff_dwt
+    reRed = pywt.idwt2(coeffs_r, 'haar')
+    reGreen = pywt.idwt2(coeffs_g, 'haar')
+    reBlue = pywt.idwt2(coeffs_b, 'haar')
+
+    (width, height) = reRed.shape
+    dwt_img = Image.new('RGB', (width, height), (0, 0, 20))
+    
+    reMaxRed = util.max_ndarray(reRed)
+    reMaxGreen = util.max_ndarray(reGreen)
+    reMaxBlue = util.max_ndarray(reBlue)
+
+    for i in range(width):
+        for j in range(height):
+            R = reRed[i][j]
+            # R = (R/reMaxRed)*160.0
+            G = reGreen[i][j]
+            # G = (G/reMaxGreen)*85.0
+            B = reBlue[i][j]
+            # B = (B/reMaxBlue)*100.0
+            new_value = (int(R), int(G), int(B))
+            dwt_img.putpixel((i, j), new_value)
+    dwt_img.save('/home/jiewend/download/a_re.png')
+    return dwt_img
+
 
 def quantization(mat):
     pass
