@@ -1,13 +1,17 @@
 'Test Definition for Compression methods'
 import unittest
 import os
+import numpy as np
 from src.utils import load_img
 from src.compression import (
     rgb_to_yuv, \
     yuv_to_rgb, \
     extract_rgb_coeff, \
     img_from_dwt_coeff, \
-    recontract_img_from_dwt_coef
+    recontract_img_from_dwt_coef, \
+    creat_lost_LH_HL_HH_dwt_coef, \
+    creat_lost_HL_HH_dwt_coef, \
+    creat_lost_HH_dwt_coef
 )
 
 FOLDER = 'data'
@@ -43,10 +47,29 @@ class CompressionTest(unittest.TestCase):
         img = load_img(os.path.join(FOLDER, FILENAME))
         coeff = extract_rgb_coeff(img)
         img_new = img_from_dwt_coeff(coeff)
-        img_new.save('/home/jiewend/download/a.jpeg')
+        img_new.save('/home/jiewend/download/a_4component.png')
         return
     def test_recontract_img_from_dwt_coef(self):
         img = load_img(os.path.join(FOLDER, FILENAME))
         coeff = extract_rgb_coeff(img)
+        coeff_copy = coeff
+        
         img_new = recontract_img_from_dwt_coef(coeff)
+    def test_creat_lost_dwt_coef(self):
+        img = load_img(os.path.join(FOLDER, FILENAME))
+        coeff = extract_rgb_coeff(img)
+
+        coff_lost = creat_lost_LH_HL_HH_dwt_coef(coeff, 1)
+        img_new = recontract_img_from_dwt_coef(coff_lost)
+        img_new.save('/home/jiewend/download/a_re_lost_LH_HL_HH.png')
+
+        coff_lost = creat_lost_HL_HH_dwt_coef(coeff, 1)
+        img_new = recontract_img_from_dwt_coef(coff_lost)
+        img_new.save('/home/jiewend/download/a_re_lost_HL_HH.png')
+
+        coff_lost = creat_lost_HH_dwt_coef(coeff, 1)
+        img_new = recontract_img_from_dwt_coef(coff_lost)
+        img_new.save('/home/jiewend/download/a_re_lost_HH.png')
+
+
 

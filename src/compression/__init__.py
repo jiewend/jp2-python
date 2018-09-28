@@ -167,50 +167,51 @@ def img_from_dwt_coeff(coeff_dwt):
     for i in range(width):
         for j in range(height):
             R = cARed[i][j]
-            R = (R/cAMaxRed)*160.0
+            # R = (R/cAMaxRed)*160.0
             G = cAGreen[i][j]
-            G = (G/cAMaxGreen)*85.0
+            # G = (G/cAMaxGreen)*85.0
             B = cABlue[i][j]
-            B = (B/cAMaxBlue)*100.0
+            # B = (B/cAMaxBlue)*100.0
             new_value = (int(R), int(G), int(B))
             dwt_img.putpixel((i, j), new_value)
     #cH reconstruction
     for i in range(width):
         for j in range(height):
             R = cHRed[i][j]
-            R = (R/cHMaxRed)*160.0
+            # R = (R/cHMaxRed)*160.0
             G = cHGreen[i][j]
-            G = (G/cHMaxGreen)*85.0
+            # G = (G/cHMaxGreen)*85.0
             B = cHBlue[i][j]
-            B = (B/cHMaxBlue)*100.0
+            # B = (B/cHMaxBlue)*100.0
             new_value = (int(R), int(G), int(B))
             dwt_img.putpixel((i+width, j), new_value)
     #cV reconstruction
     for i in range(width):
         for j in range(height):
             R = cVRed[i][j]
-            R = (R/cVMaxRed)*160.0
+            # R = (R/cVMaxRed)*160.0
             G = cVGreen[i][j]
-            G = (G/cVMaxGreen)*85.0
+            # G = (G/cVMaxGreen)*85.0
             B = cVBlue[i][j]
-            B = (B/cVMaxBlue)*100.0
+            # B = (B/cVMaxBlue)*100.0
             new_value = (int(R), int(G), int(B))
             dwt_img.putpixel((i, j+height), new_value)
     #cD reconstruction
     for i in range(width):
         for j in range(height):
             R = cDRed[i][j]
-            R = (R/cDMaxRed)*160.0
+            # R = (R/cDMaxRed)*160.0
             G = cDGreen[i][j]
-            G = (G/cDMaxGreen)*85.0
+            # G = (G/cDMaxGreen)*85.0
             B = cDBlue[i][j]
-            B = (B/cDMaxBlue)*100.0
+            # B = (B/cDMaxBlue)*100.0
             new_value = (int(R), int(G), int(B))
             dwt_img.putpixel((i+width, j+height), new_value)
     return dwt_img
 
 def recontract_img_from_dwt_coef(coeff_dwt):
     (coeffs_r, coeffs_g, coeffs_b) = coeff_dwt
+    
     reRed = pywt.idwt2(coeffs_r, 'haar')
     reGreen = pywt.idwt2(coeffs_g, 'haar')
     reBlue = pywt.idwt2(coeffs_b, 'haar')
@@ -235,6 +236,44 @@ def recontract_img_from_dwt_coef(coeff_dwt):
     dwt_img.save('/home/jiewend/download/a_re.png')
     return dwt_img
 
+def creat_lost_HH_dwt_coef(coeff_dwt, lost_component):
+    (coeffs_r, coeffs_g, coeffs_b) = coeff_dwt
+    img_shape = numpy.array(coeffs_r[0]).shape
+    print( img_shape)
+    
+    reRed = (coeffs_r[0], (coeffs_r[1][0], coeffs_r[1][1], numpy.zeros(img_shape)))
+    # reRed = pywt.idwt2(coeffs_r, 'haar')
+    reGreen = (coeffs_g[0], (coeffs_g[1][0], coeffs_g[1][1], numpy.zeros(img_shape)))
+    # reGreen = pywt.idwt2(coeffs_g, 'haar')
+    reBlue = (coeffs_b[0], (coeffs_b[1][0], coeffs_b[1][1], numpy.zeros(img_shape)))
+    # reBlue = pywt.idwt2(coeffs_b, 'haar')
+    return (reRed, reGreen, reBlue)
+
+def creat_lost_LH_HL_HH_dwt_coef(coeff_dwt, lost_component):
+    (coeffs_r, coeffs_g, coeffs_b) = coeff_dwt
+    img_shape = numpy.array(coeffs_r[0]).shape
+    print( img_shape)
+    
+    reRed = (coeffs_r[0], (numpy.zeros(img_shape), numpy.zeros(img_shape), numpy.zeros(img_shape)))
+    # reRed = pywt.idwt2(coeffs_r, 'haar')
+    reGreen = (coeffs_g[0], (numpy.zeros(img_shape), numpy.zeros(img_shape), numpy.zeros(img_shape)))
+    # reGreen = pywt.idwt2(coeffs_g, 'haar')
+    reBlue = (coeffs_b[0], (numpy.zeros(img_shape),  numpy.zeros(img_shape), numpy.zeros(img_shape)))
+    # reBlue = pywt.idwt2(coeffs_b, 'haar')
+    return (reRed, reGreen, reBlue)
+
+def creat_lost_HL_HH_dwt_coef(coeff_dwt, lost_component):
+    (coeffs_r, coeffs_g, coeffs_b) = coeff_dwt
+    img_shape = numpy.array(coeffs_r[0]).shape
+    print( img_shape)
+    
+    reRed = (coeffs_r[0], (coeffs_r[1][0], numpy.zeros(img_shape), numpy.zeros(img_shape)))
+    # reRed = pywt.idwt2(coeffs_r, 'haar')
+    reGreen = (coeffs_g[0], (coeffs_g[1][0], numpy.zeros(img_shape), numpy.zeros(img_shape)))
+    # reGreen = pywt.idwt2(coeffs_g, 'haar')
+    reBlue = (coeffs_b[0], (coeffs_b[1][0], numpy.zeros(img_shape), numpy.zeros(img_shape)))
+    # reBlue = pywt.idwt2(coeffs_b, 'haar')
+    return (reRed, reGreen, reBlue)
 
 def quantization(mat):
     pass
